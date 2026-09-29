@@ -2,6 +2,11 @@ name: Update Songs CN
 
 on:
   workflow_dispatch:
+    inputs:
+      taiko_api_token:
+        description: 'Taiko API token'
+        required: true
+        type: string
 
 jobs:
   update-songs-cn:
@@ -28,7 +33,7 @@ jobs:
       - name: Run fetcher
         env:
           TAIKO_API_URL: ${{ vars.TAIKO_API_URL }}
-          TAIKO_API_TOKEN: ${{ vars.TAIKO_API_TOKEN }}
+          TAIKO_API_TOKEN: ${{ inputs.taiko_api_token }}
         run: python scripts/fetch_cn_songs.py
         
       - name: Check for changes
