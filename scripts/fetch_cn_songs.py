@@ -96,6 +96,8 @@ def fetch_and_save_songs():
                 continue
 
             song["types"] = types_map.get(song_id, [])
+            song.pop("type", None)
+            song.pop("sort", None)
             unique_songs.append(song)
             seen_ids.add(song_id)
 
